@@ -6,7 +6,7 @@
 /*   By: cerodrig <cerodrig@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 14:44:41 by cerodrig          #+#    #+#             */
-/*   Updated: 2026/08/22 23:29:36 by salegari         ###   ########.fr       */
+/*   Updated: 2026/08/23 00:47:49 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,44 @@ int	ft_atoi(char *str)
 	return (res * s);
 }
 
-// int	ft_check(char **arr)
-// {
-// 	int	i;
-// 	int	j;
-//
-// 	i = 0;
-// 	j = 0;
-// 	while(arr[i])
-// 	{
-// 		if (ft_strlen(arr[i]) > 1)
-// 			return (0);
-// 		while(arr[i][j])
-// 		{
-// 			if(arr[i][j] >= '0')
-// 		}
-// 	}
-// 	return (1);
-// }
+int	ft_check_lenght(char *str)
+{
+	int	size;
 
-void	ft_free(int **board, int size)
+	size = (ft_wordc(str, " ")) / 4;
+	if (size < 4 || size > 9)
+		return (0);
+	return (1);
+}
+
+int	ft_check(char **arr, int size, char *orig)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	if (!ft_check_lenght(orig))
+		return (0);
+	while (arr[i])
+	{
+		if (ft_strlen(arr[i]) > 1)
+			return (0);
+		j = 0;
+		while (arr[i][j])
+		{
+			if (arr[i][j] < '0' || arr[i][j] > '9')
+				return (0);
+			if ((arr[i][j] - '0') > (size - 2) || (arr[i][j] - '0') < 1)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	ft_free(int **board, int size, char **arr)
 {
 	int	i;
 
@@ -80,6 +98,12 @@ void	ft_free(int **board, int size)
 	while (i < size)
 	{
 		free(board[i]);
+		i++;
+	}
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
 		i++;
 	}
 }
@@ -129,36 +153,35 @@ int	main(int ac, char **av)
 	char **arr;
 
 	i = 0;
-	size = (ft_wordc(av[1], " ")) / 4 + 2;
-	if ((size % size) != 0)
-		return (write(1, "Error\n", 6), 0);
 	if (ac != 2)
-		return (write(1, "Error\n", 6), 0);
+		return (write(1, "Error\n", 6), 1);
+	size = (ft_wordc(av[1], " ")) / 4 + 2;
 	arr = ft_split(av[1], " ");
+	// PROTEGER ESTE MALLOC
+	if(!ft_check(arr, size, av[1]))
+		return (write(1, "Error\n", 6), 1);
 	board = malloc(size * sizeof(int *));
 	if (!board)
-		return (write(1, "Error\n", 6), 0);
-	// if(!ft_check_valid(arr, size))
-		// return (write(1, "Error\n", 6), 0);
+		return (write(1, "Error\n", 6), 1);
 	while (i < size)
 	{
 		board[i] = ft_conform(arr, size, i);
 		if (!board[i])
 		{
-			ft_free(board, i);
+			ft_free(board, i, arr);
 			free(board);
-			return (write(1, "Error\n", 6), 0);
+			return (write(1, "Error\n", 6), 1);
 		}
 		i++;
 	}
 
 // IMPRIMIR LA TABLA, PRUEBA:
 	int y;
-	int x = 0;
-	while (x < size)
+	int x = 1;
+	while (x < size )
 	{
-		y = 0;
-		while (y < size)
+		y = 1;
+		while (y < size )
 		{
 			printf("%d ", board[x][y]);
 			y++;
