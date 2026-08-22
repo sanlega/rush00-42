@@ -6,7 +6,7 @@
 /*   By: cerodrig <cerodrig@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 14:44:41 by cerodrig          #+#    #+#             */
-/*   Updated: 2026/08/22 21:10:15 by salegari         ###   ########.fr       */
+/*   Updated: 2026/08/22 21:46:07 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 //void	convert_str_to_int(char *str);
 void	rush(char *str);
+char	**ft_split(char *str, char *charset);
+int	ft_wordc(char *str, char *set);
 
 int	ft_isspace(char c)
 {
@@ -48,20 +50,6 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (res * s);
-}
-
-int	ft_isnumber(char *str)
-{
-	int	i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] < '0' || str [i] > '9')
-			return 0;
-		i++;
-	}
-	return (1);
 }
 
 void	ft_free(int **board, int size)
@@ -113,22 +101,24 @@ int	*ft_conform(char **nb, int size, int row)
 	return (table);
 }
 
-int	main(int ac, char *av[])
+int	main(int ac, char **av)
 {
 	int	i;
 	int	**board;
 	int	 size;
+	char **arr;
 
 	i = 0;
-	size = (ac - 1) / 4 + 2;
-	if (ac != 17)
+	size = (ft_wordc(av[1], " ")) / 4 + 2;
+	arr = ft_split(av[1], " ");
+	if (ac != 2)
 		return (write(1, "Error\n", 6), 0);
 	board = malloc(size * sizeof(int *));
 	if (!board)
 		return (write(1, "Error\n", 6), 0);
 	while (i < size)
 	{
-		board[i] = ft_conform(av, size, i);
+		board[i] = ft_conform(arr++, size, i);
 		if (!board[i])
 		{
 			ft_free(board, i);
