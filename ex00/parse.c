@@ -48,10 +48,14 @@ int	ft_atoi(char *str)
 
 static int	ft_check_lenght(char *str)
 {
-	int	size;
+	int	words;
+	int	n;
 
-	size = (ft_wordc(str, " ")) / 4;
-	if (size < 4 || size > 9)
+	words = ft_wordc(str, " ");
+	if (words % 4 != 0)
+		return (0);
+	n = words / 4;
+	if (n < 4 || n > 9)
 		return (0);
 	return (1);
 }
@@ -60,8 +64,10 @@ int	ft_check(char **arr, int size, char *orig)
 {
 	int	i;
 	int	j;
+	int	n;
 
 	i = 0;
+	n = size - 2;
 	if (!ft_check_lenght(orig))
 		return (0);
 	while (arr[i])
@@ -73,11 +79,13 @@ int	ft_check(char **arr, int size, char *orig)
 		{
 			if (arr[i][j] < '0' || arr[i][j] > '9')
 				return (0);
-			if ((arr[i][j] - '0') > (size - 2) || (arr[i][j] - '0') < 1)
+			if ((arr[i][j] - '0') > n || (arr[i][j] - '0') < 1)
 				return (0);
 			j++;
 		}
 		i++;
 	}
+	if (i != n * 4)
+		return (0);
 	return (1);
 }

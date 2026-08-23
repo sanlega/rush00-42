@@ -59,6 +59,10 @@ int	ft_check_opposites(int **board, int size)
 			return (0);
 		if (board[i][0] + board[i][size - 1] > n + 1)
 			return (0);
+		if (board[0][i] == 1 && board[size - 1][i] == 1)
+			return (0);
+		if (board[i][0] == 1 && board[i][size - 1] == 1)
+			return (0);
 		i++;
 	}
 	return (1);
