@@ -6,16 +6,20 @@
 /*   By: cerodrig <cerodrig@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:45:00 by cerodrig          #+#    #+#             */
-/*   Updated: 2026/08/23 22:52:01 by salegari         ###   ########.fr       */
+/*   Updated: 2026/08/23 23:04:41 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_count_visible(int **board, int size, int idx, int side);
 
-static int	ft_clue_ok(int **board, int size, int row, int col, int val)
+static int	ft_clue_ok(int **board, int size, int pos, int val)
 {
 	int	n;
+	int	row;
+	int	col;
 
+	row = pos / 16;
+	col = pos % 16;
 	n = size - 2;
 	if (val > n - board[row][0] + col)
 		return (0);
@@ -78,7 +82,7 @@ int	ft_is_safe(int **board, int size, int pos, int val)
 	row = pos / 16;
 	col = pos % 16;
 	n = size - 2;
-	if (!ft_clue_ok(board, size, row, col, val))
+	if (!ft_clue_ok(board, size, pos, val))
 		return (0);
 	i = 1;
 	while (i <= n)
