@@ -6,14 +6,12 @@
 /*   By: cerodrig <cerodrig@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 14:44:41 by cerodrig          #+#    #+#             */
-/*   Updated: 2026/08/23 22:18:06 by salegari         ###   ########.fr       */
+/*   Updated: 2026/08/23 23:06:45 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
-#include <time.h>
 
 char	**ft_split(char *str, char *charset);
 int		ft_wordc(char *str, char *set);
