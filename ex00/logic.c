@@ -68,6 +68,32 @@ static int	ft_fill_side(int **board, int size, int idx, int side)
 	return (1);
 }
 
+static int	ft_fill_extra(int **board, int size, int idx)
+{
+	int	n;
+
+	n = size - 2;
+	if (board[0][idx] == 1 && board[size - 1][idx] == 2)
+		if (!ft_set_cell(board, size, n * 16 + idx, n - 1))
+			return (0);
+	if (board[size - 1][idx] == 1 && board[0][idx] == 2)
+		if (!ft_set_cell(board, size, 1 * 16 + idx, n - 1))
+			return (0);
+	if (board[idx][0] == 1 && board[idx][size - 1] == 2)
+		if (!ft_set_cell(board, size, idx * 16 + n, n - 1))
+			return (0);
+	if (board[idx][size - 1] == 1 && board[idx][0] == 2)
+		if (!ft_set_cell(board, size, idx * 16 + 1, n - 1))
+			return (0);
+	if (board[0][idx] + board[size - 1][idx] == n + 1)
+		if (!ft_set_cell(board, size, board[0][idx] * 16 + idx, n))
+			return (0);
+	if (board[idx][0] + board[idx][size - 1] == n + 1)
+		if (!ft_set_cell(board, size, idx * 16 + board[idx][0], n))
+			return (0);
+	return (1);
+}
+
 int	ft_apply_logic(int **board, int size)
 {
 	int	n;
@@ -80,7 +106,8 @@ int	ft_apply_logic(int **board, int size)
 		if (!ft_fill_side(board, size, i, 0)
 			|| !ft_fill_side(board, size, i, 1)
 			|| !ft_fill_side(board, size, i, 2)
-			|| !ft_fill_side(board, size, i, 3))
+			|| !ft_fill_side(board, size, i, 3)
+			|| !ft_fill_extra(board, size, i))
 			return (0);
 		i++;
 	}

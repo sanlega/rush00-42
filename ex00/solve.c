@@ -71,7 +71,7 @@ static void	ft_print_solution(int **board, int size)
 	}
 }
 
-int	ft_backtrack(int **board, int size)
+static int	ft_backtrack(int **board, int size)
 {
 	int	row;
 	int	col;
