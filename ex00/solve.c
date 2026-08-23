@@ -6,7 +6,7 @@
 /*   By: cerodrig <cerodrig@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/23 16:45:00 by cerodrig          #+#    #+#             */
-/*   Updated: 2026/08/23 16:50:00 by cerodrig         ###   ########.fr       */
+/*   Updated: 2026/08/23 22:45:02 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	ft_print_solution(int **board, int size)
 	}
 }
 
-int	ft_backtrack(int **board, int size)
+static int	ft_backtrack(int **board, int size)
 {
 	int	row;
 	int	col;

@@ -6,7 +6,7 @@
 /*   By: salegari <salegari@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/22 23:14:17 by salegari          #+#    #+#             */
-/*   Updated: 2026/08/23 16:45:00 by cerodrig         ###   ########.fr       */
+/*   Updated: 2026/08/23 22:53:43 by salegari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,25 @@ int	ft_set_cell(int **board, int size, int pos, int val)
 {
 	int	row;
 	int	col;
+	int	n;
+	int	i;
 
 	row = pos / 16;
 	col = pos % 16;
+	n = size - 2;
 	if (row <= 0 || row >= size - 1 || col <= 0 || col >= size - 1)
 		return (0);
-	if (board[row][col] == 0)
-		board[row][col] = val;
-	else if (board[row][col] != val)
+	if (board[row][col] != 0 && board[row][col] != val)
 		return (0);
+	i = 1;
+	while (i <= n)
+	{
+		if (board[row][i] == val && i != col)
+			return (0);
+		if (board[i][col] == val && i != row)
+			return (0);
+		i++;
+	}
+	board[row][col] = val;
 	return (1);
 }

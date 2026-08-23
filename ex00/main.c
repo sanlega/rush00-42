@@ -78,7 +78,7 @@ int	main(int ac, char **av)
 		return (write(1, "Error\n", 6), 1);
 	size = (ft_wordc(av[1], " ")) / 4 + 2;
 	arr = ft_split(av[1], " ");
-	if (!arr || !ft_check(arr, size, av[1]))
+	if (!arr || !ft_check(arr, (size - 2), av[1]))
 		return (ft_free_all(NULL, 0, arr), write(1, "Error\n", 6), 1);
 	board = malloc(size * sizeof(int *));
 	if (!board)
