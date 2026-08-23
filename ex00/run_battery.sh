@@ -1,31 +1,41 @@
 #!/bin/bash
 set -e
 PASS=0; FAIL=0
-run_ok() {
-  name="$1"; shift
-  echo -n "$name ... "
-  out=$(./rush01 "$@" 2>&1) || true
-  if echo "$out" | grep -q Error; then echo FAIL; FAIL=$((FAIL+1)); else echo OK; PASS=$((PASS+1)); fi
-}
-run_err() {
-  name="$1"; shift
-  echo -n "$name ... "
-  out=$(./rush01 "$@" 2>&1) || true
-  if echo "$out" | grep -q Error; then echo OK; PASS=$((PASS+1)); else echo FAIL; FAIL=$((FAIL+1)); fi
-}
+run_ok() { n="$1"; shift; echo -n "$n ... "; o=$(./rush01 "$@" 2>&1)||true; if echo "$o"|grep -q Error; then echo FAIL; FAIL=$((FAIL+1)); else echo OK; PASS=$((PASS+1)); fi; }
+run_err() { n="$1"; shift; echo -n "$n ... "; o=$(./rush01 "$@" 2>&1)||true; if echo "$o"|grep -q Error; then echo OK; PASS=$((PASS+1)); else echo FAIL; FAIL=$((FAIL+1)); fi; }
 echo "=== INVALIDOS ==="
-run_err "17 unos" "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
-run_err "16 unos" "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
-run_err "opuestos n" "4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4"
-run_err "rango" "5 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
-echo "=== FACILES ==="
-run_ok "4x4 facil" "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
-run_ok "5x5 facil" "5 4 3 2 1 1 2 2 2 2 5 4 3 2 1 1 2 2 2 2"
-run_ok "6x6 facil" "6 5 4 3 2 1 1 2 2 2 2 2 6 5 4 3 2 1 1 2 2 2 2 2"
-run_ok "7x7 facil" "7 6 5 4 3 2 1 1 2 2 2 2 2 2 7 6 5 4 3 2 1 1 2 2 2 2 2 2"
-run_ok "8x8 facil" "8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2"
-run_ok "9x9 facil" "9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2 9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2"
-echo "=== SUBJECT ==="
-run_ok "subject 4x4" "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+run_err "inv_17" "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
+run_err "inv_16" "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
+run_err "inv_n" "4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4"
+run_err "inv_rng" "5 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+echo "=== 4X4 ==="
+run_ok "4x4_facil" "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+run_ok "4x4_media1" "1 2 2 3 2 2 3 1 1 2 2 2 4 2 3 1"
+run_ok "4x4_media2" "1 2 3 2 3 2 1 2 1 2 2 2 4 1 3 2"
+run_ok "4x4_dificil1" "2 1 3 2 1 3 2 2 2 3 3 1 3 1 2 2"
+run_ok "4x4_dificil2" "1 2 2 3 2 2 3 1 1 3 2 2 3 2 3 1"
+echo "=== 5X5 ==="
+run_ok "5x5_facil" "5 4 3 2 1 1 2 2 2 2 5 4 3 2 1 1 2 2 2 2"
+run_ok "5x5_media1" "1 3 2 2 4 3 1 3 2 2 1 3 4 2 2 4 2 2 1 3"
+run_ok "5x5_media2" "2 2 2 3 1 3 2 3 1 3 2 2 1 2 3 1 3 3 2 2"
+run_ok "5x5_dificil1" "2 3 2 2 1 3 1 2 2 4 4 1 3 2 2 1 4 2 2 3"
+run_ok "5x5_dificil2" "2 1 2 3 4 4 3 2 2 1 2 1 2 3 4 4 3 2 2 1"
+echo "=== 6X6 ==="
+run_ok "6x6_facil" "6 5 4 3 2 1 1 2 2 2 2 2 6 5 4 3 2 1 1 2 2 2 2 2"
+run_ok "6x6_media1" "3 3 1 3 2 2 3 2 2 1 4 2 3 3 1 5 2 3 2 2 3 1 3 2"
+run_ok "6x6_media2" "2 2 1 3 3 2 3 3 5 2 1 2 3 2 1 2 3 3 2 3 3 3 1 2"
+run_ok "6x6_dificil1" "3 3 3 1 2 2 3 2 1 2 4 3 4 3 4 1 2 2 2 2 1 3 2 3"
+run_ok "6x6_dificil2" "3 1 2 4 2 2 3 4 2 1 3 4 2 3 3 1 2 3 2 2 1 3 3 3"
+echo "=== 7X7 ==="
+run_ok "7x7_facil" "7 6 5 4 3 2 1 1 2 2 2 2 2 2 7 6 5 4 3 2 1 1 2 2 2 2 2 2"
+run_ok "7x7_media1" "3 2 2 3 1 3 3 1 2 2 3 4 4 2 3 2 3 5 2 3 1 2 3 2 2 1 5 5"
+run_ok "7x7_media2" "1 3 2 3 2 4 2 4 3 1 2 3 3 2 1 4 2 3 2 2 3 5 1 3 3 2 4 2"
+run_ok "7x7_dificil1" "1 2 3 2 3 2 4 4 1 4 3 2 5 2 1 4 5 2 2 3 2 4 2 2 3 3 1 2"
+run_ok "7x7_dificil2" "2 3 3 3 3 1 2 1 3 2 3 2 3 4 2 4 2 3 2 3 1 2 1 3 2 2 3 4"
+echo "=== 8X8 ==="
+run_ok "8x8_facil" "8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2"
+run_ok "8x8_media1" "2 2 4 3 1 3 6 2 3 4 2 4 3 2 1 4 3 1 3 4 2 2 5 3 3 4 1 2 4 4 3 2"
+echo "=== 9X9 ==="
+run_ok "9x9_facil" "9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2 9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2"
 echo "PASS=$PASS FAIL=$FAIL"
 test "$FAIL" -eq 0

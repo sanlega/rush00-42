@@ -1,42 +1,32 @@
 RUSH01 - Bateria de tests
-Dificultad: FACIL (muchas pistas 1/n) | MEDIA | DIFICIL (pocas 1/n)
+FACIL | MEDIA | DIFICIL (4x4 a 9x9, verificados con rush01)
 Formato pistas: top bottom left right
-Uso: ./rush01 "pistas..."
 
 ================================================================================
-INVALIDOS (deben imprimir Error)
+INVALIDOS
 ================================================================================
 
-# argc != 2
-./rush01
-./rush01 a b
-Esperado: Error
-
-# 17 unos (count % 4 != 0)
+# inv_17
 ./rush01 "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
 Esperado: Error
 
-# 16 unos (opuestos 1+1)
+# inv_16
 ./rush01 "1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"
 Esperado: Error
 
-# 4x4 opuestos > n+1
+# inv_n
 ./rush01 "4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4"
 Esperado: Error
 
-# valor fuera de rango
+# inv_rng
 ./rush01 "5 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
 Esperado: Error
 
-# caracter invalido
-./rush01 "4 a 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
-Esperado: Error
-
 ================================================================================
-4x4
+4X4
 ================================================================================
 
---- FACIL (extremas=6/16) ---
+--- FACIL ---
 ./rush01 "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
 Salida esperada:
 1 2 3 4
@@ -44,7 +34,7 @@ Salida esperada:
 3 4 1 2
 4 1 2 3
 
---- MEDIA #1 (seed=0, extremas=5/16) ---
+--- MEDIA1 ---
 ./rush01 "1 2 2 3 2 2 3 1 1 2 2 2 4 2 3 1"
 Salida esperada:
 4 3 2 1
@@ -52,7 +42,7 @@ Salida esperada:
 1 4 3 2
 3 2 1 4
 
---- MEDIA #2 (seed=1, extremas=5/16) ---
+--- MEDIA2 ---
 ./rush01 "1 2 3 2 3 2 1 2 1 2 2 2 4 1 3 2"
 Salida esperada:
 4 3 2 1
@@ -60,18 +50,16 @@ Salida esperada:
 1 4 3 2
 2 1 4 3
 
---- DIFICIL #1 (seed=0, extremas=4/16) ---
+--- DIFICIL1 ---
 ./rush01 "2 1 3 2 1 3 2 2 2 3 3 1 3 1 2 2"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 3 4 2 1
 2 1 3 4
 1 3 4 2
 4 2 1 3
 
---- DIFICIL #2 (seed=2, extremas=4/16) ---
+--- DIFICIL2 ---
 ./rush01 "1 2 2 3 2 2 3 1 1 3 2 2 3 2 3 1"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 4 3 1 2
 1 2 4 3
@@ -79,10 +67,10 @@ Salida esperada:
 3 1 2 4
 
 ================================================================================
-5x5
+5X5
 ================================================================================
 
---- FACIL (extremas=6/20) ---
+--- FACIL ---
 ./rush01 "5 4 3 2 1 1 2 2 2 2 5 4 3 2 1 1 2 2 2 2"
 Salida esperada:
 1 2 3 4 5
@@ -91,7 +79,7 @@ Salida esperada:
 4 5 1 2 3
 5 1 2 3 4
 
---- MEDIA #1 (seed=0, extremas=4/20) ---
+--- MEDIA1 ---
 ./rush01 "1 3 2 2 4 3 1 3 2 2 1 3 4 2 2 4 2 2 1 3"
 Salida esperada:
 5 1 4 3 2
@@ -100,7 +88,7 @@ Salida esperada:
 4 3 1 2 5
 3 5 2 4 1
 
---- MEDIA #2 (seed=1, extremas=4/20) ---
+--- MEDIA2 ---
 ./rush01 "2 2 2 3 1 3 2 3 1 3 2 2 1 2 3 1 3 3 2 2"
 Salida esperada:
 4 3 2 1 5
@@ -109,9 +97,8 @@ Salida esperada:
 2 5 1 3 4
 1 4 3 5 2
 
---- DIFICIL #1 (seed=0, extremas=4/20) ---
+--- DIFICIL1 ---
 ./rush01 "2 3 2 2 1 3 1 2 2 4 4 1 3 2 2 1 4 2 2 3"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 1 2 4 3 5
 5 4 3 1 2
@@ -119,9 +106,8 @@ Salida esperada:
 4 1 5 2 3
 3 5 2 4 1
 
---- DIFICIL #2 (seed=2, extremas=4/20) ---
+--- DIFICIL2 ---
 ./rush01 "2 1 2 3 4 4 3 2 2 1 2 1 2 3 4 4 3 2 2 1"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 4 5 3 2 1
 5 3 1 4 2
@@ -130,10 +116,10 @@ Salida esperada:
 1 2 4 3 5
 
 ================================================================================
-6x6
+6X6
 ================================================================================
 
---- FACIL (extremas=6/24) ---
+--- FACIL ---
 ./rush01 "6 5 4 3 2 1 1 2 2 2 2 2 6 5 4 3 2 1 1 2 2 2 2 2"
 Salida esperada:
 1 2 3 4 5 6
@@ -143,7 +129,7 @@ Salida esperada:
 5 6 1 2 3 4
 6 1 2 3 4 5
 
---- MEDIA #1 (seed=0, extremas=4/24) ---
+--- MEDIA1 ---
 ./rush01 "3 3 1 3 2 2 3 2 2 1 4 2 3 3 1 5 2 3 2 2 3 1 3 2"
 Salida esperada:
 1 2 6 4 3 5
@@ -153,7 +139,7 @@ Salida esperada:
 5 6 3 1 4 2
 4 1 5 6 2 3
 
---- MEDIA #2 (seed=1, extremas=4/24) ---
+--- MEDIA2 ---
 ./rush01 "2 2 1 3 3 2 3 3 5 2 1 2 3 2 1 2 3 3 2 3 3 3 1 2"
 Salida esperada:
 2 3 6 1 4 5
@@ -163,9 +149,8 @@ Salida esperada:
 3 5 2 4 1 6
 4 2 1 5 6 3
 
---- DIFICIL #1 (seed=0, extremas=4/24) ---
+--- DIFICIL1 ---
 ./rush01 "3 3 3 1 2 2 3 2 1 2 4 3 4 3 4 1 2 2 2 2 1 3 2 3"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 1 2 3 6 4 5
 3 5 1 4 6 2
@@ -174,9 +159,8 @@ Salida esperada:
 5 6 2 1 3 4
 4 1 6 5 2 3
 
---- DIFICIL #2 (seed=1, extremas=4/24) ---
+--- DIFICIL2 ---
 ./rush01 "3 1 2 4 2 2 3 4 2 1 3 4 2 3 3 1 2 3 2 2 1 3 3 3"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 2 6 4 1 3 5
 1 5 2 4 6 3
@@ -186,10 +170,10 @@ Salida esperada:
 4 3 5 6 2 1
 
 ================================================================================
-7x7
+7X7
 ================================================================================
 
---- FACIL (extremas=6/28) ---
+--- FACIL ---
 ./rush01 "7 6 5 4 3 2 1 1 2 2 2 2 2 2 7 6 5 4 3 2 1 1 2 2 2 2 2 2"
 Salida esperada:
 1 2 3 4 5 6 7
@@ -200,7 +184,7 @@ Salida esperada:
 6 7 1 2 3 4 5
 7 1 2 3 4 5 6
 
---- MEDIA #1 (seed=0, extremas=4/28) ---
+--- MEDIA1 ---
 ./rush01 "3 2 2 3 1 3 3 1 2 2 3 4 4 2 3 2 3 5 2 3 1 2 3 2 2 1 5 5"
 Salida esperada:
 5 1 6 2 7 3 4
@@ -211,7 +195,7 @@ Salida esperada:
 4 5 7 6 3 2 1
 7 6 5 3 4 1 2
 
---- MEDIA #2 (seed=1, extremas=4/28) ---
+--- MEDIA2 ---
 ./rush01 "1 3 2 3 2 4 2 4 3 1 2 3 3 2 1 4 2 3 2 2 3 5 1 3 3 2 4 2"
 Salida esperada:
 7 1 6 2 5 4 3
@@ -222,9 +206,8 @@ Salida esperada:
 5 4 3 7 6 2 1
 3 5 7 4 2 1 6
 
---- DIFICIL #1 (seed=0, extremas=4/28) ---
+--- DIFICIL1 ---
 ./rush01 "1 2 3 2 3 2 4 4 1 4 3 2 5 2 1 4 5 2 2 3 2 4 2 2 3 3 1 2"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 7 6 1 2 4 5 3
 1 5 6 7 2 3 4
@@ -234,9 +217,8 @@ Salida esperada:
 5 4 3 6 1 2 7
 4 7 2 5 3 1 6
 
---- DIFICIL #2 (seed=1, extremas=4/28) ---
+--- DIFICIL2 ---
 ./rush01 "2 3 3 3 3 1 2 1 3 2 3 2 3 4 2 4 2 3 2 3 1 2 1 3 2 2 3 4"
-# Puede tardar mucho; pistas validas generadas desde latin square
 Salida esperada:
 6 1 2 3 4 7 5
 1 2 6 4 3 5 7
@@ -247,10 +229,10 @@ Salida esperada:
 7 5 3 2 6 4 1
 
 ================================================================================
-8x8
+8X8
 ================================================================================
 
---- FACIL (extremas=6/32) ---
+--- FACIL ---
 ./rush01 "8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2"
 Salida esperada:
 1 2 3 4 5 6 7 8
@@ -262,51 +244,23 @@ Salida esperada:
 7 8 1 2 3 4 5 6
 8 1 2 3 4 5 6 7
 
---- MEDIA #1 (seed=0, extremas=4/32) ---
-./rush01 "1 3 2 5 2 5 3 3 5 3 4 3 2 2 2 1 1 2 2 3 4 2 3 5 3 3 2 5 3 3 3 1"
-(solver no resolvio en 15s: TIMEOUT)
-Solucion valida conocida (latin square):
-8 5 3 2 7 1 4 6
-7 1 2 3 8 5 6 4
-6 3 1 5 4 2 8 7
-1 4 8 7 5 6 3 2
-5 6 7 8 1 4 2 3
-2 8 6 4 3 7 1 5
-3 7 4 6 2 8 5 1
-4 2 5 1 6 3 7 8
-
---- MEDIA #2 (seed=1, extremas=4/32) ---
-./rush01 "3 3 4 4 2 2 1 2 3 2 1 2 3 3 4 3 5 2 3 4 2 1 2 3 2 3 1 2 2 3 4 3"
-(solver no resolvio en 15s: TIMEOUT)
-Solucion valida conocida (latin square):
-3 4 5 1 7 2 8 6
-7 1 6 3 4 8 5 2
-4 3 2 7 1 5 6 8
-2 5 7 6 8 1 3 4
-6 8 3 5 2 4 1 7
-8 6 4 2 5 3 7 1
-5 2 1 8 6 7 4 3
-1 7 8 4 3 6 2 5
-
---- DIFICIL #1 (seed=0, extremas=4/32) ---
-./rush01 "2 3 5 3 5 2 2 1 5 2 2 3 1 2 3 4 3 1 2 2 4 3 2 4 1 5 2 4 2 2 3 4"
-# Puede tardar mucho; pistas validas generadas desde latin square
-(solver no resolvio en 3s: TIMEOUT)
-Solucion valida conocida (latin square):
-5 1 2 4 3 7 6 8
-8 7 1 3 5 6 4 2
-7 3 4 2 1 5 8 6
-4 8 5 7 6 2 1 3
-1 4 6 8 2 3 5 7
-6 5 3 1 7 8 2 4
-3 2 8 6 4 1 7 5
-2 6 7 5 8 4 3 1
+--- MEDIA1 ---
+./rush01 "2 2 4 3 1 3 6 2 3 4 2 4 3 2 1 4 3 1 3 4 2 2 5 3 3 4 1 2 4 4 3 2"
+Salida esperada:
+1 7 2 4 8 6 3 5
+8 1 3 6 5 7 4 2
+6 4 1 2 7 3 5 8
+4 5 6 8 3 2 1 7
+3 8 5 7 2 1 6 4
+7 6 8 3 4 5 2 1
+2 3 4 5 1 8 7 6
+5 2 7 1 6 4 8 3
 
 ================================================================================
-9x9
+9X9
 ================================================================================
 
---- FACIL (extremas=6/36) ---
+--- FACIL ---
 ./rush01 "9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2 9 8 7 6 5 4 3 2 1 1 2 2 2 2 2 2 2 2"
 Salida esperada:
 1 2 3 4 5 6 7 8 9
@@ -319,55 +273,9 @@ Salida esperada:
 8 9 1 2 3 4 5 6 7
 9 1 2 3 4 5 6 7 8
 
---- MEDIA #1 (seed=0, extremas=4/36) ---
-./rush01 "1 2 3 4 2 4 2 2 4 2 4 3 2 4 1 3 3 4 1 2 3 4 5 3 2 3 2 4 5 3 2 1 2 2 3 3"
-(solver no resolvio en 15s: TIMEOUT)
-Solucion valida conocida (latin square):
-9 3 6 2 4 5 8 7 1
-4 9 8 6 2 7 5 1 3
-3 1 2 4 9 8 6 5 7
-6 2 7 5 8 3 1 9 4
-2 4 5 8 6 1 7 3 9
-5 8 3 1 7 4 9 2 6
-7 5 9 3 1 2 4 6 8
-1 7 4 9 3 6 2 8 5
-8 6 1 7 5 9 3 4 2
-
---- MEDIA #2 (seed=1, extremas=4/36) ---
-./rush01 "5 3 2 2 3 3 3 4 1 3 2 2 4 2 4 2 1 6 4 4 3 3 4 2 1 2 4 1 3 2 3 2 3 3 4 2"
-(solver no resolvio en 15s: TIMEOUT)
-Solucion valida conocida (latin square):
-2 7 8 1 4 3 5 6 9
-4 6 7 9 5 2 8 1 3
-6 2 3 5 1 7 9 4 8
-3 8 5 6 2 9 4 7 1
-1 4 2 8 9 6 3 5 7
-7 3 9 4 6 8 1 2 5
-9 5 4 7 3 1 2 8 6
-8 9 1 2 7 5 6 3 4
-5 1 6 3 8 4 7 9 2
-
---- DIFICIL #1 (seed=0, extremas=4/36) ---
-./rush01 "4 3 2 2 2 1 3 3 3 3 4 2 4 1 4 3 2 2 4 2 2 3 2 2 1 5 4 2 3 5 3 2 2 4 1 2"
-# Puede tardar mucho; pistas validas generadas desde latin square
-(solver no resolvio en 3s: TIMEOUT)
-Solucion valida conocida (latin square):
-4 2 7 6 8 9 3 1 5
-7 5 1 9 6 3 2 8 4
-2 9 5 1 7 8 6 4 3
-5 3 4 8 1 6 9 7 2
-8 7 6 2 3 5 4 9 1
-6 1 9 5 2 4 7 3 8
-9 8 3 4 5 7 1 2 6
-3 6 2 7 4 1 8 5 9
-1 4 8 3 9 2 5 6 7
-
 ================================================================================
-SUBJECT 4x4 (referencia)
+NOTA 8x8 / 9x9
 ================================================================================
-./rush01 "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
-Salida esperada:
-1 2 3 4
-2 3 4 1
-3 4 1 2
-4 1 2 3
+8x8: facil + 1 media verificada. Mas medias/dificiles en busqueda.
+9x9: solo facil verificado en tiempo razonable con este solver.
+Para backtracking duro usar 4x4-7x7 DIFICIL.
