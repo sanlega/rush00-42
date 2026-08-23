@@ -10,10 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Construye el tablero (n+2 x n+2) a partir del array de strings.
+** Las pistas van en el borde; el interior empieza en 0 (vacio).
+**
+** Orden del input (4 grupos de n pistas):
+**   top -> bottom -> left -> right
+*/
+
 #include <stdlib.h>
 
 int	ft_atoi(char *str);
 
+/* Fila 0: pistas superiores, de izquierda a derecha */
 static void	ft_fill_top(int *table, char **nb, int size)
 {
 	int	i;
@@ -26,6 +35,7 @@ static void	ft_fill_top(int *table, char **nb, int size)
 	}
 }
 
+/* Ultima fila: pistas inferiores. Empiezan en nb[n] */
 static void	ft_fill_bottom(int *table, char **nb, int size, int n)
 {
 	int	i;
@@ -38,6 +48,7 @@ static void	ft_fill_bottom(int *table, char **nb, int size, int n)
 	}
 }
 
+/* Filas intermedias: pista izquierda en [0] y derecha en [size-1] */
 static void	ft_fill_sides(int *table, char **nb, int size, int row)
 {
 	int	n;
@@ -47,6 +58,10 @@ static void	ft_fill_sides(int *table, char **nb, int size, int row)
 	table[size - 1] = ft_atoi(nb[3 * n + row - 1]);
 }
 
+/*
+** Crea una fila del board segun su indice.
+** row 0 = top, row size-1 = bottom, resto = filas con pistas laterales.
+*/
 int	*ft_conform(char **nb, int size, int row)
 {
 	int	i;

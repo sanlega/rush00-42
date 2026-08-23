@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Solver completo: opuestos -> logica -> backtracking -> imprimir.
+** Solo usamos write() para la salida, como pide el subject.
+*/
+
 #include <unistd.h>
 
 int	ft_check_opposites(int **board, int size);
@@ -22,6 +27,7 @@ static void	ft_write_char(char c)
 	write(1, &c, 1);
 }
 
+/* Busca la primera celda interior vacia (valor 0) de arriba a abajo */
 static int	ft_find_empty(int **board, int size, int *row, int *col)
 {
 	int	n;
@@ -48,6 +54,7 @@ static int	ft_find_empty(int **board, int size, int *row, int *col)
 	return (0);
 }
 
+/* Imprime la cuadricula interior: "1 2 3 4\n" por fila */
 static void	ft_print_solution(int **board, int size)
 {
 	int	n;
@@ -71,6 +78,10 @@ static void	ft_print_solution(int **board, int size)
 	}
 }
 
+/*
+** Backtracking clasico: prueba 1..n en la celda vacia, valida y recursa.
+** Si no hay vacias, el puzzle esta resuelto.
+*/
 int	ft_backtrack(int **board, int size)
 {
 	int	row;
@@ -97,6 +108,10 @@ int	ft_backtrack(int **board, int size)
 	return (0);
 }
 
+/*
+** Orquesta todo el proceso de resolucion.
+** Devuelve 0 si el puzzle es invalido o no tiene solucion.
+*/
 int	ft_solver(int **board, int size)
 {
 	if (!ft_check_opposites(board, size))

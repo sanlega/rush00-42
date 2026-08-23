@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Punto de entrada del rush01.
+** Recibe las pistas por argv, monta el tablero y llama al solver.
+** Si algo falla imprime "Error\n" y sale con 1.
+*/
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -20,6 +26,10 @@ int		*ft_conform(char **nb, int size, int row);
 void	ft_free_all(int **board, int rows, char **arr);
 int		ft_solver(int **board, int size);
 
+/*
+** Flujo: validar args -> split -> check -> crear board -> solver -> free.
+** size = n + 2 porque el board lleva un borde de pistas alrededor del nxn.
+*/
 int	main(int ac, char **av)
 {
 	int		i;

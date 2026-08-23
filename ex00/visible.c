@@ -10,6 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Cuenta cuantos edificios se ven desde un borde.
+** Un edificio mas alto tapa a los mas bajos detras suyo.
+*/
+
+/* Mirando una columna desde arriba (top -> bottom) */
 static int	ft_count_top(int **board, int size, int idx)
 {
 	int	max;
@@ -33,6 +39,7 @@ static int	ft_count_top(int **board, int size, int idx)
 	return (cnt);
 }
 
+/* Misma columna pero mirando desde abajo */
 static int	ft_count_bottom(int **board, int size, int idx)
 {
 	int	max;
@@ -54,6 +61,7 @@ static int	ft_count_bottom(int **board, int size, int idx)
 	return (cnt);
 }
 
+/* Mirando una fila desde la izquierda */
 static int	ft_count_left(int **board, int size, int idx)
 {
 	int	max;
@@ -77,6 +85,7 @@ static int	ft_count_left(int **board, int size, int idx)
 	return (cnt);
 }
 
+/* Mirando una fila desde la derecha */
 static int	ft_count_right(int **board, int size, int idx)
 {
 	int	max;
@@ -98,6 +107,10 @@ static int	ft_count_right(int **board, int size, int idx)
 	return (cnt);
 }
 
+/*
+** side 0=top, 1=bottom, 2=left, 3=right.
+** idx = numero de fila o columna segun el lado.
+*/
 int	ft_count_visible(int **board, int size, int idx, int side)
 {
 	if (side == 0)

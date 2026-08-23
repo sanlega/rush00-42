@@ -10,8 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Relleno logico antes del backtracking (sin probar todas las opciones).
+**
+** Reglas del skyscraper:
+**   pista = n  -> se ven todos los edificios, van 1..n en orden
+**   pista = 1  -> solo se ve uno, el mas alto (n) va en primera posicion
+**
+** side: 0=top, 1=bottom, 2=left, 3=right
+*/
+
 int	ft_set_cell(int **board, int size, int pos, int val);
 
+/* Rellena una linea completa en orden ascendente 1,2,3...n desde ese lado */
 static int	ft_fill_n(int **board, int size, int idx, int side)
 {
 	int	n;
@@ -34,6 +45,7 @@ static int	ft_fill_n(int **board, int size, int idx, int side)
 	return (1);
 }
 
+/* Pista 1: el edificio mas alto va pegado a ese borde */
 static int	ft_fill_one(int **board, int size, int idx, int side)
 {
 	int	n;
@@ -48,6 +60,7 @@ static int	ft_fill_one(int **board, int size, int idx, int side)
 	return (ft_set_cell(board, size, idx * 16 + n, n));
 }
 
+/* Lee la pista del borde y aplica la regla que toque (o no hace nada) */
 static int	ft_fill_side(int **board, int size, int idx, int side)
 {
 	int	clue;
@@ -68,6 +81,7 @@ static int	ft_fill_side(int **board, int size, int idx, int side)
 	return (1);
 }
 
+/* Recorre filas/columnas y aplica la logica en los cuatro lados */
 int	ft_apply_logic(int **board, int size)
 {
 	int	n;

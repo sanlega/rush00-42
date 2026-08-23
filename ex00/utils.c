@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Funciones auxiliares compartidas: strlen, free de todo, y escribir celdas.
+*/
+
 #include <stdlib.h>
 
 int	ft_strlen(char *str)
@@ -22,6 +26,10 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+/*
+** Libera board (filas parcial o total + punteros) y el split de strings.
+** rows = cuantas filas del board ya se habian reservado (util si falla a medias).
+*/
 void	ft_free_all(int **board, int rows, char **arr)
 {
 	int	i;
@@ -48,6 +56,11 @@ void	ft_free_all(int **board, int rows, char **arr)
 	}
 }
 
+/*
+** Escribe val en una celda interior del board.
+** pos = row * 16 + col (truco para no pasar mas de 4 parametros).
+** Devuelve 0 si hay conflicto con un valor distinto ya puesto.
+*/
 int	ft_set_cell(int **board, int size, int pos, int val)
 {
 	int	row;

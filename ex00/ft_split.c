@@ -10,8 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Parte el argv[1] en palabras separadas por espacios.
+** Cada palabra es una pista ("4", "3", "2"...).
+*/
+
 #include <stdlib.h>
 
+/* Dice si c esta en el set de separadores (aqui solo usamos " ") */
 int	ft_checkset(char c, char *set)
 {
 	int	i;
@@ -26,6 +32,7 @@ int	ft_checkset(char c, char *set)
 	return (0);
 }
 
+/* Cuenta cuantas palabras hay separadas por el charset */
 int	ft_wordc(char *str, char *set)
 {
 	int	i;
@@ -45,6 +52,7 @@ int	ft_wordc(char *str, char *set)
 	return (words);
 }
 
+/* Longitud de la palabra actual antes del siguiente separador */
 int	ft_wordlen(char *str, char *set)
 {
 	int	i;
@@ -55,6 +63,7 @@ int	ft_wordlen(char *str, char *set)
 	return (i);
 }
 
+/* Copia n chars de src a un string nuevo terminado en \0 */
 char	*ft_strncpy(char *src, int n)
 {
 	char	*dest;
@@ -73,6 +82,10 @@ char	*ft_strncpy(char *src, int n)
 	return (dest);
 }
 
+/*
+** Devuelve array de strings con cada pista y NULL al final.
+** Ej: "4 3 2 1" -> {"4", "3", "2", "1", NULL}
+*/
 char	**ft_split(char *str, char *charset)
 {
 	char	**arr;

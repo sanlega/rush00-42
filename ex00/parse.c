@@ -10,9 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Validacion del input: longitud del mapa y rango de cada pista.
+** Tambien tenemos ft_atoi porque lo necesitamos al montar el board.
+*/
+
 int	ft_wordc(char *str, char *set);
 int	ft_strlen(char *str);
 
+/* Comprueba si un char es espacio en blanco (incluido tab, newline...) */
 static int	ft_isspace(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\r'
@@ -21,6 +27,7 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
+/* Convierte string a int. Lo usamos con cada pista del split */
 int	ft_atoi(char *str)
 {
 	int	i;
@@ -46,6 +53,10 @@ int	ft_atoi(char *str)
 	return (res * s);
 }
 
+/*
+** Cuenta palabras del input y saca n = palabras / 4.
+** El subject pide mapas de 4x4 obligatorio y hasta 9x9 de bonus.
+*/
 static int	ft_check_lenght(char *str)
 {
 	int	size;
@@ -56,6 +67,10 @@ static int	ft_check_lenght(char *str)
 	return (1);
 }
 
+/*
+** Revisa cada pista: un solo digito, entre 1 y n (size - 2).
+** Si algo no cuadra el puzzle ni siquiera se intenta resolver.
+*/
 int	ft_check(char **arr, int size, char *orig)
 {
 	int	i;

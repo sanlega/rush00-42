@@ -10,8 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Comprobaciones de validez: opuestos, duplicados y pistas cumplidas.
+*/
+
 int	ft_count_visible(int **board, int size, int idx, int side);
 
+/* axis 0 = fila, axis 1 = columna. True si no queda ningun 0 */
 static int	ft_line_complete(int **board, int size, int idx, int axis)
 {
 	int	n;
@@ -30,6 +35,10 @@ static int	ft_line_complete(int **board, int size, int idx, int axis)
 	return (1);
 }
 
+/*
+** Regla rapida: top + bottom (o left + right) no puede superar n+1.
+** Si no se cumple el puzzle es imposible y ni probamos backtracking.
+*/
 int	ft_check_opposites(int **board, int size)
 {
 	int	n;
@@ -48,6 +57,10 @@ int	ft_check_opposites(int **board, int size)
 	return (1);
 }
 
+/*
+** Comprueba que val no se repita en la fila ni en la columna de pos.
+** pos = row * 16 + col
+*/
 int	ft_is_safe(int **board, int size, int pos, int val)
 {
 	int	n;
@@ -70,6 +83,10 @@ int	ft_is_safe(int **board, int size, int pos, int val)
 	return (1);
 }
 
+/*
+** Cuando una fila o columna se completa, compara visibles con las pistas.
+** Se llama en cada paso del backtracking para podar ramas malas pronto.
+*/
 int	ft_check_constraints(int **board, int size, int row, int col)
 {
 	if (ft_line_complete(board, size, row, 0))
